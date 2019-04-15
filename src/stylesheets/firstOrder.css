@@ -1,0 +1,10 @@
+@import './footer.css';
+@import './header.css';
+@import './binary/decimal.css';
+
+body {
+  color: black;
+  background-color: darkgray;
+  background-image: url('../../resources/circles.jpg');
+  background-repeat: repeat;
+}

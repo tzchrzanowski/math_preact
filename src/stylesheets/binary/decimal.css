@@ -1,0 +1,35 @@
+
+.BinaryParent {
+    margin-top: 70px;
+    margin-left: 2px;
+    background-color: gray;
+    width: 250px;
+    color: rgb(232,225,207);
+    height: auto;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    -webkit-box-shadow: 0px 10px 20px 4px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 10px 20px 4px rgba(0,0,0,0.5);
+    box-shadow: 0px 10px 20px 4px rgba(0,0,0,0.5);
+}
+button, input[type="number"], textarea {
+    background-color : rgb(232,225,207);   
+}
+.binaryItem {
+    justify-items: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkgray;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.sectionHeader {
+    font-style: oblique;
+    height: 30px;
+    padding-top: 5px;
+    font-size: 16px;
+}

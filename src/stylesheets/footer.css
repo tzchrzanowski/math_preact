@@ -1,0 +1,17 @@
+.footer {
+  background-color: black;
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin: -8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.footerItem {
+  margin-left: 10px;
+  justify-self: center;  
+}

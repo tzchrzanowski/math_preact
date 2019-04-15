@@ -11,13 +11,11 @@ export default class BinaryToDecimal extends Component {
       input: 0,
       disabledButton: true,
     }
-    this.translateToDecimal = this.translateToDecimal.bind(this);
+    this.translateBinaryToDecimal = this.translateBinaryToDecimal.bind(this);
     this.getInputValue = this.getInputValue.bind(this);
   }
 
-  translateToDecimal() {
-    console.log('asd')
-    console.log(this.state.input)
+  translateBinaryToDecimal() {
     let n = this.state.input.length;
     let currentN = n;
     let sum = 0;
@@ -34,13 +32,11 @@ export default class BinaryToDecimal extends Component {
   }
 
   getInputValue(value) {
-    console.log(value);
     if (/^[01.]{0,30}$/.test(value)) {
       this.setState({
         input: value,
         disabledButton: false,
       })
-
     } else {
       this.setState({
         input: "Only these characters are allowed: '0', '1', '.'",
@@ -50,18 +46,17 @@ export default class BinaryToDecimal extends Component {
   }
 
   render() {
-    return <div id="reactBodyComp">
-		  <p>Binary to decimal</p>
+    return <div class="binaryItem">
+		  <p>Binary to Decimal:</p>
       <input 
         type='number'
-        pattern="[01.]{0,30}"
         value={this.state.input}
         onChange={(e) => this.getInputValue(e.target.value)}>
       </input>
       {this.state.disabledButton ? 
-        <button onClick={()=> this.translateToDecimal()} disabled>calculate</button>
+        <button disabled>calculate</button>
         :
-        <button onClick={()=> this.translateToDecimal()}>calculate</button>
+        <button onClick={()=> this.translateBinaryToDecimal()}>calculate</button>
       }
       <p>Number in binary : {this.state.input}</p>
       <p style={this.state.showResult}>Number in decimal : {this.state.result}</p>

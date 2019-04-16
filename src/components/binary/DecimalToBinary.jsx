@@ -16,7 +16,7 @@ export default class DecimalToBinary extends Component {
   }
 
   getInputValue(value) {
-    if (/^[01.]{0,30}$/.test(value)) {
+    if (/^[0-9]{0,30}$/.test(value)) {
       this.setState({
         input: value,
         disabledButton: false,
@@ -24,14 +24,29 @@ export default class DecimalToBinary extends Component {
 
     } else {
       this.setState({
-        input: "Only these characters are allowed: '0', '1', '.'",
+        input: "Only combination of numbers '0-9' is allowed",
         disabledButton: true,
       })
     }
   }
 
   translateDecimalToBinary(){
-    console.log('do nothing yet');
+    let n = this.state.input;
+    let result = '';
+    let fun = (n) => {
+      if( n == 1 || n==0 ) {
+        result = n.toString() + result;
+        return;
+      }
+      result = ((n%2).toString() + result);
+      (n%2 == 0) ? n= n/2 : n= ((n-1) / 2)
+      fun(n);
+    }
+    fun(n);
+    this.setState({
+      result: result,
+      showResult: 'display:block'
+    })
   }
 
   render() {

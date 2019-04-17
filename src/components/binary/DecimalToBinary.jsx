@@ -16,7 +16,7 @@ export default class DecimalToBinary extends Component {
   }
 
   getInputValue(value) {
-    if (/^[0-9]{0,30}$/.test(value)) {
+    if (/^[0-9]{0,15}[.]?[0-9]{1,15}$/.test(value)) {
       this.setState({
         input: value,
         disabledButton: false,
@@ -31,18 +31,50 @@ export default class DecimalToBinary extends Component {
   }
 
   translateDecimalToBinary(){
-    let n = this.state.input;
     let result = '';
-    let fun = (n) => {
+    let n = this.state.input;
+
+    let funInteget = (n) => {
       if( n == 1 || n==0 ) {
         result = n.toString() + result;
         return;
       }
       result = ((n%2).toString() + result);
       (n%2 == 0) ? n= n/2 : n= ((n-1) / 2)
-      fun(n);
+      funInteget(n);
     }
-    fun(n);
+
+    if(this.state.input.indexOf('.') < 0){
+      funInteget(n);
+    } else {
+      let inputArr = String(this.state.input).split('.');
+      let partialPart = inputArr[1];
+      let fractalDivideResultNumber = partialPart;
+      let fractalDivideResultArr = [];
+
+      funInteget(Number(inputArr[0]))
+      result += '.';
+
+      let funPartial = (partialIterationsAmount) => {
+        fractalDivideResultNumber = (Number('0.' + fractalDivideResultNumber) * 2);
+        if (partialIterationsAmount == 50){
+          return;
+        }
+        if(fractalDivideResultNumber >= 1){
+          result += 1;
+          if (partialIterationsAmount >= String(inputArr[1]).length){
+            return;
+          }
+        }else{
+          result += 0;
+        }
+        fractalDivideResultArr = String(fractalDivideResultNumber).split('.')
+        fractalDivideResultNumber = String(fractalDivideResultArr[1]);
+        funPartial(partialIterationsAmount+1);
+      } 
+      funPartial(1);
+    }
+
     this.setState({
       result: result,
       showResult: 'display:block'

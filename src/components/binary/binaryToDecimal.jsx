@@ -16,15 +16,42 @@ export default class BinaryToDecimal extends Component {
   }
 
   translateBinaryToDecimal() {
-    let n = this.state.input.length;
-    let currentN = n;
     let sum = 0;
-    for (let i = 0; i< this.state.input.length; i++){
-      if(this.state.input[i] == 1) {
-        sum = sum += Math.pow(2, currentN-1); 
-      }
-      currentN -= 1;
+    let fractal = false;
+    if(this.state.input.indexOf('.') > -1){
+      fractal = true;
     }
+    if (!fractal){
+      let n = this.state.input.length;
+      let currentN = n;
+
+      for (let i = 0; i< this.state.input.length; i++){
+        if(this.state.input[i] == 1) {
+          sum = sum += Math.pow(2, currentN-1); 
+        }
+        currentN -= 1;
+      }
+    } else {
+      let inputArr = this.state.input.split('.');
+      let integerPart = inputArr[0];
+      let fractalPart = inputArr[1];
+      let integerPartLength = integerPart.length;
+      for (let i = 0; i< integerPart.length; i++){
+        if(integerPart[i] == 1) {
+          sum = sum + Math.pow(-2, integerPartLength-1); 
+        }
+        integerPartLength -= 1;
+      }
+      let fullFractalResult = 0;
+      for (let i = 0; i< fractalPart.length; i++){
+        if(fractalPart[i] == 1) {
+          fullFractalResult = fullFractalResult + Math.pow(2, -(i+1));
+        }
+      }
+      let fullFractalResultArr = String(fullFractalResult).split('.');
+      sum += `.${fullFractalResultArr[1]}`;
+    }
+
     this.setState({
       result: sum,
       showResult: 'display:block'
@@ -32,14 +59,14 @@ export default class BinaryToDecimal extends Component {
   }
 
   getInputValue(value) {
-    if (/^[01.]{0,30}$/.test(value)) {
+    if (/^[01]{0,15}[.]?[01]{1,15}$/.test(value)) {
       this.setState({
         input: value,
         disabledButton: false,
       })
     } else {
       this.setState({
-        input: "Only these characters are allowed: '0', '1', '.'",
+        input: "Only these characters are allowed: '0', '1' and single '.'",
         disabledButton: true,
       })
     }

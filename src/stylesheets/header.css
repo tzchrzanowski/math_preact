@@ -1,5 +1,6 @@
 .header {
-  background-color: black;
+  /* background-color: #05F7FF; */
+  background-color: #297D80;
   height: 30px;
   width: 100%;
   position: absolute;
@@ -8,14 +9,26 @@
   z-index: 2;
   display: flex;
   align-items: center;
-  opacity: 0.75;
+  /* opacity: 0.75; */
   color: white;
-  -webkit-box-shadow: 10px 22px 30px 10px rgba(0,0,0,0.7);
-  -moz-box-shadow: 10px 22px 30px 10px rgba(0,0,0,0.7);
-  box-shadow: 10px 22px 30px 10px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 5px 5px 30px 5px #04C5CC;
+  -moz-box-shadow: 5px 5px 30px 5px #04C5CC;
+  box-shadow: 5px 5px 30px 5px #04C5CC;
 }
 
 .headerItem {
-  margin-left: 10px;
-  justify-self: center;  
+  margin: 0px 10px 0px 10px ;
+  justify-self: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+
+}
+.headerItem :hover {
+  cursor: pointer;
+}
+
+.firstRight {
+  margin-left: auto;
 }

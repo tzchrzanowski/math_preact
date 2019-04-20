@@ -5,7 +5,13 @@ class HeaderComponent extends Component {
   render() {
     return <div class="header">
       <div class="headerItem">
-        <span>Header</span>
+        <span>Math</span>
+      </div>
+      <div class="headerItem firstRight">
+        <span>Binary</span>
+      </div>
+      <div class="headerItem">
+        <span>Arithmetic</span>
       </div>
     </div>
   }

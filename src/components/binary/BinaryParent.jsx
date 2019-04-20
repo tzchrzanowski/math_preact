@@ -8,8 +8,8 @@ export default function BinaryParent() {
 		<div class="sectionHeader">
       <span>Binary Calculations</span>
     </div>
-    <BinaryToDecimal />
-    <DecimalToBinary />
+      <BinaryToDecimal />
+      <DecimalToBinary />
   </div>
 }
 
